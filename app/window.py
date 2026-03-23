@@ -2465,6 +2465,7 @@ class MainWindow(Adw.ApplicationWindow):
         if not ok:
             self._tts_backend = None
             self._sync_tts_buttons()
+            ok = self._start_command_tts(text, translation=translation)
         return ok
 
     def _start_command_tts(self, text: str, *, translation: str | None = None) -> bool:

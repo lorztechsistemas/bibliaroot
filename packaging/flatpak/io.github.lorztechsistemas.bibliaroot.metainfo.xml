@@ -2,39 +2,40 @@
 <component type="desktop-application">
   <id>io.github.lorztechsistemas.bibliaroot</id>
   <name>BíbliaRoot</name>
-  <summary>Leitura e estudo bíblico offline para Linux</summary>
+  <summary>Offline Bible reading and study for Linux</summary>
+  <summary xml:lang="pt-BR">Leitura e estudo bíblico offline para Linux</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
-  <url type="homepage">https://github.com/lorztechsistemas/holly-bible-linux</url>
-  <url type="bugtracker">https://github.com/lorztechsistemas/holly-bible-linux/issues</url>
-  <url type="vcs-browser">https://github.com/lorztechsistemas/holly-bible-linux</url>
+  <url type="homepage">https://github.com/lorztechsistemas/bibliaroot</url>
+  <url type="bugtracker">https://github.com/lorztechsistemas/bibliaroot/issues</url>
+  <url type="vcs-browser">https://github.com/lorztechsistemas/bibliaroot</url>
   <developer id="io.github.lorztechsistemas">
-    <name>BíbliaRoot</name>
+    <name>Lorztech Sistemas</name>
   </developer>
   <launchable type="desktop-id">io.github.lorztechsistemas.bibliaroot.desktop</launchable>
   <description>
-    <p>Aplicativo desktop para leitura e estudo bíblico offline com múltiplas traduções, busca textual, favoritos, notas, cadernos de estudo e planos de leitura.</p>
-    <p>Inclui comparação de traduções, referências cruzadas (via importação), conteúdo diário com notificação e interface traduzível.</p>
+    <p>BíbliaRoot is a desktop application for offline Bible reading and study with multiple translations, text search, favorites, notes, study notebooks, and reading plans.</p>
+    <p>It also includes translation comparison, imported cross references, daily devotional content, notifications, and a translatable interface.</p>
     <ul>
-      <li>Leitura offline com múltiplas traduções SQLite</li>
-      <li>Busca rápida e busca avançada de estudo</li>
-      <li>Notas por versículo, tags e cadernos</li>
-      <li>Planos de leitura com progresso</li>
-      <li>Tema claro/escuro e UI multilíngue</li>
+      <li>Offline reading with multiple SQLite Bible translations</li>
+      <li>Quick search and advanced study search</li>
+      <li>Verse notes, tags, and study notebooks</li>
+      <li>Reading plans with progress tracking</li>
+      <li>Light and dark themes with multilingual UI</li>
     </ul>
   </description>
   <screenshots>
     <screenshot type="default">
-      <caption>Leitura principal com navegação, busca rápida e versículos em destaque</caption>
-      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/holly-bible-linux/main/assets/screenshots/reader-overview.png</image>
+      <caption>Main reading view with navigation, quick search, and highlighted verses</caption>
+      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/bibliaroot/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/reader-overview.png</image>
     </screenshot>
     <screenshot>
-      <caption>Busca textual com resultados organizados por referência</caption>
-      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/holly-bible-linux/main/assets/screenshots/search-results.png</image>
+      <caption>Text search with results grouped by reference</caption>
+      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/bibliaroot/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/search-results.png</image>
     </screenshot>
     <screenshot>
-      <caption>Espaço de estudo com notas, cadernos e planos de leitura</caption>
-      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/holly-bible-linux/main/assets/screenshots/study-workspace.png</image>
+      <caption>Study workspace with notes, notebooks, and reading plans</caption>
+      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/bibliaroot/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/study-workspace.png</image>
     </screenshot>
   </screenshots>
   <categories>
@@ -42,11 +43,10 @@
     <category>Office</category>
   </categories>
   <keywords>
-    <keyword>bíblia</keyword>
     <keyword>bible</keyword>
-    <keyword>estudo</keyword>
-    <keyword>devocional</keyword>
-    <keyword>versículo</keyword>
+    <keyword>study</keyword>
+    <keyword>devotional</keyword>
+    <keyword>verse</keyword>
     <keyword>offline</keyword>
   </keywords>
   <provides>
@@ -59,7 +59,7 @@
   <releases>
     <release version="0.1.0" date="2026-03-04">
       <description>
-        <p>Primeira versão funcional com leitura offline, estudo, notificações diárias, multilíngue e empacotamento Flatpak.</p>
+        <p>First functional release with offline reading, study tools, daily notifications, multilingual support, and Flatpak packaging.</p>
       </description>
     </release>
   </releases>
