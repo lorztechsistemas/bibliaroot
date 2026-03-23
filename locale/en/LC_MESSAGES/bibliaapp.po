@@ -1,0 +1,1575 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-06 10:10-0300\n"
+"PO-Revision-Date: 2026-02-26 13:33-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/application.py:46
+msgid "PyGObject/GTK4/libadwaita nao encontrados. "
+msgstr "PyGObject/GTK4/libadwaita not found. "
+
+#: app/application.py:47
+msgid "Instale as dependencias do sistema antes de rodar o app."
+msgstr "Install the system dependencies before running the app."
+
+#: app/application.py:49
+msgid "Detalhe"
+msgstr "Detail"
+
+#: app/application.py:54
+msgid ""
+"Nao foi possivel iniciar a interface GTK (sem display grafico disponivel). "
+msgstr "Could not start the GTK interface (no graphical display available). "
+
+#: app/application.py:55
+msgid "Execute em uma sessao grafica Linux."
+msgstr "Run it in a Linux graphical session."
+
+#: app/window.py:119
+msgid "Leitura, busca e favoritos offline"
+msgstr "Offline reading, search and favorites"
+
+#: app/window.py:147
+msgid "Buscar palavra/frase"
+msgstr "Search word/phrase"
+
+#: app/window.py:153
+msgid "Buscar"
+msgstr "Search"
+
+#: app/window.py:159 app/window.py:182
+msgid "Favoritos"
+msgstr "Favorites"
+
+#: app/window.py:164 app/window.py:183
+msgid "Estudo"
+msgstr ""
+
+#: app/window.py:169 app/window.py:184
+msgid "Configurações"
+msgstr "Settings"
+
+#: app/window.py:175
+msgid "Carregando dados..."
+msgstr "Loading data..."
+
+#: app/window.py:180 app/window.py:203 app/window.py:801
+msgid "Leitura"
+msgstr "Reader"
+
+#: app/window.py:181
+msgid "Busca"
+msgstr "Search"
+
+#: app/window.py:216
+msgid "◀ Capítulo"
+msgstr "◀ Chapter"
+
+#: app/window.py:224
+msgid "Capítulo ▶"
+msgstr "Chapter ▶"
+
+#: app/window.py:229 app/window.py:3779
+msgid "Modo foco"
+msgstr ""
+
+#: app/window.py:234 app/window.py:825 app/window.py:1308
+msgid "Texto contínuo"
+msgstr ""
+
+#: app/window.py:242
+msgid "Fonte"
+msgstr "Font"
+
+#: app/window.py:262
+msgid "Copiar capítulo"
+msgstr ""
+
+#: app/window.py:267
+msgid "Ouvir capítulo"
+msgstr ""
+
+#: app/window.py:272 app/window.py:2564
+msgid "Pausar áudio"
+msgstr ""
+
+#: app/window.py:277
+msgid "Parar áudio"
+msgstr ""
+
+#: app/window.py:358
+msgid "Ex.: amor, fé, Jesus"
+msgstr "Ex.: love, faith, Jesus"
+
+#: app/window.py:365 app/window.py:674
+msgid "Limite"
+msgstr "Limit"
+
+#: app/window.py:371
+msgid "Executar busca"
+msgstr "Run search"
+
+#: app/window.py:378 app/window.py:2690
+msgid "Digite uma palavra ou frase para pesquisar."
+msgstr "Type a word or phrase to search."
+
+#: app/window.py:408
+msgid "Versículos favoritos"
+msgstr "Favorite verses"
+
+#: app/window.py:413 app/window.py:616 app/window.py:726 app/window.py:751
+msgid "Atualizar"
+msgstr "Refresh"
+
+#: app/window.py:419
+msgid "Nenhum favorito ainda."
+msgstr "No favorites yet."
+
+#: app/window.py:447
+msgid "Centro de estudo"
+msgstr ""
+
+#: app/window.py:452
+msgid "Usar capítulo atual"
+msgstr ""
+
+#: app/window.py:459
+msgid "Selecione um versículo na leitura e clique em “Estudar”."
+msgstr ""
+
+#: app/window.py:475 app/window.py:2963 app/window.py:3609
+msgid "Caderno"
+msgstr ""
+
+#: app/window.py:476 app/window.py:2807 app/window.py:2813
+msgid "Padrão"
+msgstr ""
+
+#: app/window.py:483
+msgid "Criar caderno"
+msgstr ""
+
+#: app/window.py:487
+msgid "Salvar referência"
+msgstr ""
+
+#: app/window.py:491
+msgid "Exportar dados"
+msgstr ""
+
+#: app/window.py:495
+msgid "Backup completo"
+msgstr ""
+
+#: app/window.py:499
+msgid "Importar backup"
+msgstr ""
+
+#: app/window.py:503
+msgid "Restaurar completo"
+msgstr ""
+
+#: app/window.py:517
+msgid "Notas e marcação"
+msgstr ""
+
+#: app/window.py:523
+msgid "Tags (ex.: oração, fé, sermão)"
+msgstr ""
+
+#: app/window.py:529
+msgid "Sem cor"
+msgstr ""
+
+#: app/window.py:529
+msgid "Amarelo"
+msgstr ""
+
+#: app/window.py:529
+msgid "Verde"
+msgstr ""
+
+#: app/window.py:529
+msgid "Azul"
+msgstr ""
+
+#: app/window.py:529
+msgid "Rosa"
+msgstr ""
+
+#: app/window.py:545
+msgid "Salvar nota"
+msgstr ""
+
+#: app/window.py:550
+msgid "Remover nota"
+msgstr ""
+
+#: app/window.py:554
+msgid "Listar notas do capítulo"
+msgstr ""
+
+#: app/window.py:570
+msgid "Comparação de traduções"
+msgstr ""
+
+#: app/window.py:575
+msgid "Copiar comparação"
+msgstr ""
+
+#: app/window.py:589
+msgid "Comparar"
+msgstr ""
+
+#: app/window.py:609
+msgid "Referências cruzadas"
+msgstr ""
+
+#: app/window.py:612
+msgid "Importar"
+msgstr ""
+
+#: app/window.py:635
+msgid "Busca avançada de estudo"
+msgstr ""
+
+#: app/window.py:641
+msgid "Palavra, frase ou múltiplos termos"
+msgstr ""
+
+#: app/window.py:648
+msgid "Frase"
+msgstr ""
+
+#: app/window.py:648
+msgid "Qualquer termo"
+msgstr ""
+
+#: app/window.py:648
+msgid "Todos os termos"
+msgstr ""
+
+#: app/window.py:657
+msgid "Toda a Bíblia"
+msgstr ""
+
+#: app/window.py:657
+msgid "Antigo Testamento"
+msgstr ""
+
+#: app/window.py:657
+msgid "Novo Testamento"
+msgstr ""
+
+#: app/window.py:664 app/window.py:3239
+msgid "Todos os livros"
+msgstr ""
+
+#: app/window.py:669
+msgid "Somente com nota"
+msgstr ""
+
+#: app/window.py:678
+msgid "Buscar no estudo"
+msgstr ""
+
+#: app/window.py:682
+msgid "Use filtros para localizar passagens de estudo."
+msgstr ""
+
+#: app/window.py:702
+msgid "Planos de leitura"
+msgstr ""
+
+#: app/window.py:721
+msgid "Entradas recentes (todos cadernos)"
+msgstr ""
+
+#: app/window.py:746
+msgid "Entradas do caderno"
+msgstr ""
+
+#: app/window.py:771
+msgid "Notas recentes"
+msgstr ""
+
+#: app/window.py:776
+msgid "Filtrar por tag (opcional)"
+msgstr ""
+
+#: app/window.py:780
+msgid "Filtrar"
+msgstr ""
+
+#: app/window.py:802
+msgid "Tamanho da fonte"
+msgstr "Font size"
+
+#: app/window.py:802
+msgid "Ajuste da leitura dos versículos"
+msgstr "Adjust verse reading size"
+
+#: app/window.py:820
+msgid "Layout da leitura"
+msgstr ""
+
+#: app/window.py:821
+msgid "Escolha entre cartões por versículo ou texto contínuo (estilo livro)"
+msgstr ""
+
+#: app/window.py:825 app/window.py:1308
+msgid "Cards por versículo"
+msgstr ""
+
+#: app/window.py:834
+msgid "Idioma da voz (TTS)"
+msgstr ""
+
+#: app/window.py:835
+msgid ""
+"Define o idioma da leitura em voz; use Manual se a detecção automática falhar"
+msgstr ""
+
+#: app/window.py:844
+msgid "Automático (pela tradução)"
+msgstr ""
+
+#: app/window.py:857
+msgid "Motor da voz (TTS)"
+msgstr ""
+
+#: app/window.py:858
+msgid ""
+"Piper (Neural) integrado ao app para melhor qualidade e funcionamento offline"
+msgstr ""
+
+#: app/window.py:866
+msgid "Aparência"
+msgstr "Appearance"
+
+#: app/window.py:868 app/services/daily_content.py:57
+msgid "Tema"
+msgstr "Theme"
+
+#: app/window.py:869
+msgid "Escolha entre sistema, claro ou escuro para facilitar a leitura"
+msgstr "Choose system, light or dark mode for easier reading"
+
+#: app/window.py:873 app/window.py:886 app/window.py:1298
+msgid "Sistema"
+msgstr "System"
+
+#: app/window.py:873 app/window.py:1298
+msgid "Claro"
+msgstr "Light"
+
+#: app/window.py:873 app/window.py:1298
+msgid "Escuro"
+msgstr "Dark"
+
+#: app/window.py:881
+msgid "Idioma da interface"
+msgstr "Interface language"
+
+#: app/window.py:882
+msgid "Escolha o idioma do app (aplica após reiniciar)"
+msgstr "Choose the app language (applies after restart)"
+
+#: app/window.py:894
+msgid "Atalhos"
+msgstr "Shortcuts"
+
+#: app/window.py:896
+msgid ""
+"Ctrl+F: busca | Ctrl+L: leitura | Ctrl+D: favoritos | Ctrl+E: estudo | "
+"Ctrl+, : configurações | "
+msgstr ""
+
+#: app/window.py:897
+msgid "Alt+←/Alt+→: capítulo anterior/próximo"
+msgstr "Alt+←/Alt+→: previous/next chapter"
+
+#: app/window.py:899
+msgid "Atalhos disponíveis"
+msgstr "Available shortcuts"
+
+#: app/window.py:907 scripts/daily_notification.py:200
+msgid "Conteúdo diário"
+msgstr "Daily content"
+
+#: app/window.py:908
+msgid ""
+"Configure o tipo de mensagem, agenda, entrega e diagnóstico das notificações."
+msgstr ""
+"Configure message type, schedule, delivery and notification diagnostics."
+
+#: app/window.py:911
+msgid "Agenda"
+msgstr "Schedule"
+
+#: app/window.py:912
+msgid "Defina quando as mensagens devem ser enviadas ao longo do dia."
+msgstr "Set when messages should be sent throughout the day."
+
+#: app/window.py:915
+msgid "Entrega e alerta"
+msgstr "Delivery and alert"
+
+#: app/window.py:916
+msgid ""
+"Escolha como receber as mensagens e como o alerta sonoro deve se comportar."
+msgstr "Choose how to receive messages and how sound alerts should behave."
+
+#: app/window.py:919
+msgid "Ações"
+msgstr "Actions"
+
+#: app/window.py:920
+msgid "Aplicar, testar e consultar o agendamento configurado no sistema."
+msgstr "Apply, test and inspect the schedule configured in the system."
+
+#: app/window.py:923
+msgid "Resumo e diagnóstico"
+msgstr "Summary and diagnostics"
+
+#: app/window.py:924
+msgid "Resumo atual da configuração e status do timer do sistema."
+msgstr "Current configuration summary and system timer status."
+
+#: app/window.py:928
+msgid "Ativar conteúdo diário"
+msgstr "Enable daily content"
+
+#: app/window.py:929
+msgid ""
+"Envia notificação do sistema com versículo/estudo/esboço no horário definido"
+msgstr ""
+"Send a system notification with verse/study/outline at the scheduled time"
+
+#: app/window.py:935
+msgid "Tipo de conteúdo"
+msgstr "Content type"
+
+#: app/window.py:935
+msgid "Escolha o formato da mensagem diária"
+msgstr "Choose the daily message format"
+
+#: app/window.py:938 app/services/daily_content.py:68
+msgid "Versículo do dia"
+msgstr "Verse of the day"
+
+#: app/window.py:938 app/services/daily_content.py:47
+msgid "Estudo diário"
+msgstr "Daily study"
+
+#: app/window.py:938 app/services/daily_content.py:55
+msgid "Esboço diário"
+msgstr "Daily outline"
+
+#: app/window.py:947
+msgid "Tradução do conteúdo diário"
+msgstr "Daily content translation"
+
+#: app/window.py:948
+msgid "Escolha uma tradução fixa ou use a tradução ativa da leitura"
+msgstr "Choose a fixed translation or use the active reading translation"
+
+#: app/window.py:953
+msgid "Usar tradução ativa"
+msgstr "Use active translation"
+
+#: app/window.py:963
+msgid "Horário"
+msgstr "Time"
+
+#: app/window.py:963
+msgid "Formato 24h (HH:MM)"
+msgstr "24h format (HH:MM)"
+
+#: app/window.py:976
+msgid "Hora final"
+msgstr "End time"
+
+#: app/window.py:976
+msgid "Fim da janela diária (HH:MM)"
+msgstr "End of daily window (HH:MM)"
+
+#: app/window.py:991
+msgid "Frequência"
+msgstr "Frequency"
+
+#: app/window.py:992
+msgid "Escolha se envia uma vez ao dia ou repetido durante o dia"
+msgstr "Choose whether to send once a day or repeatedly during the day"
+
+#: app/window.py:996
+msgid "Uma vez ao dia"
+msgstr "Once a day"
+
+#: app/window.py:996
+msgid "Repetir no dia"
+msgstr "Repeat during the day"
+
+#: app/window.py:1006
+msgid "Número de envios"
+msgstr "Number of sends"
+
+#: app/window.py:1006
+msgid "Usado quando a frequência é repetida"
+msgstr "Used when frequency is repeated"
+
+#: app/window.py:1016
+msgid "Intervalo (min)"
+msgstr "Interval (min)"
+
+#: app/window.py:1016
+msgid "Intervalo entre mensagens (quando repetido)"
+msgstr "Interval between messages (when repeated)"
+
+#: app/window.py:1027
+msgid "Notificação persistente"
+msgstr "Persistent notification"
+
+#: app/window.py:1028
+msgid "Tenta manter a notificação até interação (depende do daemon do sistema)"
+msgstr ""
+"Tries to keep the notification until interaction (depends on the system "
+"daemon)"
+
+#: app/window.py:1035
+msgid "Entrega"
+msgstr "Delivery"
+
+#: app/window.py:1036
+msgid "Escolha entre notificação nativa ou popup do BíbliaRoot"
+msgstr ""
+
+#: app/window.py:1040
+msgid "Nativa do sistema"
+msgstr "System native"
+
+#: app/window.py:1040
+msgid "Popup do BíbliaRoot"
+msgstr ""
+
+#: app/window.py:1049
+msgid "Tocar som"
+msgstr "Play sound"
+
+#: app/window.py:1050
+msgid "Tenta tocar um som junto da mensagem (melhor esforço)"
+msgstr "Tries to play a sound with the message (best effort)"
+
+#: app/window.py:1057
+msgid "Som do alerta"
+msgstr "Alert sound"
+
+#: app/window.py:1058
+msgid "Escolha o bipe usado quando 'Tocar som' estiver ativado"
+msgstr "Choose the beep used when 'Play sound' is enabled"
+
+#: app/window.py:1062
+msgid "Suave"
+msgstr "Soft"
+
+#: app/window.py:1062
+msgid "Sino"
+msgstr "Bell"
+
+#: app/window.py:1062
+msgid "Alerta"
+msgstr "Alert"
+
+#: app/window.py:1072
+msgid "Pré-visualização"
+msgstr "Preview"
+
+#: app/window.py:1073
+msgid "Veja a prévia e teste o envio imediatamente"
+msgstr "See the preview and test sending immediately"
+
+#: app/window.py:1075
+msgid "Prévia"
+msgstr "Preview"
+
+#: app/window.py:1081
+msgid "Testar agora"
+msgstr "Test now"
+
+#: app/window.py:1090
+msgid "Agendamento do sistema"
+msgstr "System scheduling"
+
+#: app/window.py:1091
+msgid "Usa systemd --user no Linux"
+msgstr "Uses systemd --user on Linux"
+
+#: app/window.py:1093
+msgid "Aplicar"
+msgstr "Apply"
+
+#: app/window.py:1101
+msgid "Desativar"
+msgstr "Disable"
+
+#: app/window.py:1111
+msgid "Diagnóstico"
+msgstr "Diagnostics"
+
+#: app/window.py:1112
+msgid "Consultar status do timer e último erro/sucesso"
+msgstr "Check timer status and last error/success"
+
+#: app/window.py:1114
+msgid "Status do timer"
+msgstr "Timer status"
+
+#: app/window.py:1120
+msgid "Copiar erro"
+msgstr "Copy error"
+
+#: app/window.py:1129
+msgid "Prévia: desativado."
+msgstr "Preview: disabled."
+
+#: app/window.py:1135
+msgid "Timer: status não consultado."
+msgstr "Timer: status not checked."
+
+#: app/window.py:1166
+msgid "Nenhum banco encontrado"
+msgstr "No database found"
+
+#: app/window.py:1168
+msgid "Rode scripts/setup_db.py ou copie os .sqlite para data/bibles/."
+msgstr "Run scripts/setup_db.py or copy the .sqlite files to data/bibles/."
+
+#: app/window.py:1170
+msgid "Nenhum banco SQLite encontrado em data/bibles/."
+msgstr "No SQLite database found in data/bibles/."
+
+#: app/window.py:1187 app/window.py:1426
+msgid "Tradução ativa"
+msgstr "Active translation"
+
+#: app/window.py:1187
+msgid "traduções disponíveis"
+msgstr "available translations"
+
+#: app/window.py:1196
+msgid "Banco não encontrado"
+msgstr "Database not found"
+
+#: app/window.py:1204
+msgid "Sem livros nesta tradução."
+msgstr "No books in this translation."
+
+#: app/window.py:1278
+msgid "Fonte ajustada para"
+msgstr "Font adjusted to"
+
+#: app/window.py:1299
+msgid "Tema definido"
+msgstr "Theme set"
+
+#: app/window.py:1318
+msgid "Layout de leitura: cards por versículo."
+msgstr ""
+
+#: app/window.py:1320
+msgid "Layout de leitura: texto contínuo."
+msgstr ""
+
+#: app/window.py:1420
+msgid "Tradução ativa para busca/leitura"
+msgstr "Active translation for search/reading"
+
+#: app/window.py:1426
+msgid "livros"
+msgstr "books"
+
+#: app/window.py:1428
+msgid "Tradução alterada para"
+msgstr "Translation changed to"
+
+#: app/window.py:1448
+msgid "Idioma salvo. Reinicie o app para aplicar a tradução da interface."
+msgstr "Language saved. Restart the app to apply the interface translation."
+
+#: app/window.py:1450
+msgid "Idioma salvo. Reinicie o app."
+msgstr "Language saved. Restart the app."
+
+#: app/window.py:1471
+msgid "Idioma da voz salvo."
+msgstr ""
+
+#: app/window.py:1479
+msgid "Capítulo não encontrado"
+msgstr "Chapter not found"
+
+#: app/window.py:1480 app/window.py:1567
+msgid "Nenhum versículo encontrado para este capítulo."
+msgstr "No verses found for this chapter."
+
+#: app/window.py:1492
+msgid "Lendo"
+msgstr "Reading"
+
+#: app/window.py:1492
+msgid "versículos"
+msgstr "verses"
+
+#: app/window.py:1492 app/window.py:3408
+msgid "tradução"
+msgstr "translation"
+
+#: app/window.py:1514
+msgid "Falha ao renderizar texto contínuo; voltando para cards."
+msgstr ""
+
+#: app/window.py:1517
+msgid "Texto contínuo indisponível neste ambiente; usando cards."
+msgstr ""
+
+#: app/window.py:1661
+msgid "Nenhum capítulo carregado para copiar."
+msgstr ""
+
+#: app/window.py:1669 app/window.py:1679
+msgid "Nenhum capítulo carregado para ouvir."
+msgstr ""
+
+#: app/window.py:1692 app/window.py:2340 app/window.py:2652
+msgid "Preparando áudio (Piper)..."
+msgstr ""
+
+#: app/window.py:1693 app/window.py:2653
+msgid "Preparando áudio..."
+msgstr ""
+
+#: app/window.py:1695 app/window.py:2420 app/window.py:2421
+msgid "Falha no áudio (Piper)."
+msgstr ""
+
+#: app/window.py:1737
+msgid "tag(s)"
+msgstr ""
+
+#: app/window.py:1739 app/window.py:1740
+msgid "nota"
+msgstr ""
+
+#: app/window.py:1745 app/window.py:2736
+msgid "Desfavoritar"
+msgstr "Unfavorite"
+
+#: app/window.py:1745 app/window.py:2736
+msgid "Favoritar"
+msgstr "Favorite"
+
+#: app/window.py:1761 app/window.py:2918
+msgid "Estudar"
+msgstr ""
+
+#: app/window.py:1777 scripts/daily_notification.py:227
+msgid "Copiar"
+msgstr "Copy"
+
+#: app/window.py:1786
+msgid "Ouvir"
+msgstr ""
+
+#: app/window.py:1804
+msgid "Nota"
+msgstr ""
+
+#: app/window.py:1818
+msgid "Sem display gráfico para acessar área de transferência."
+msgstr "No graphical display to access clipboard."
+
+#: app/window.py:1822
+msgid "Versículo copiado para a área de transferência."
+msgstr "Verse copied to clipboard."
+
+#: app/window.py:1823
+msgid "Versículo copiado."
+msgstr "Verse copied."
+
+#: app/window.py:2399 app/window.py:2400 app/window.py:2403 app/window.py:2551
+#: app/window.py:2552 app/window.py:2655 app/window.py:2656
+msgid "Leitura em voz iniciada."
+msgstr ""
+
+#: app/window.py:2418
+msgid "Falha ao preparar áudio (Piper)."
+msgstr ""
+
+#: app/window.py:2564
+msgid "Continuar áudio"
+msgstr ""
+
+#: app/window.py:2612 app/window.py:2629
+msgid "Áudio retomado."
+msgstr ""
+
+#: app/window.py:2612 app/window.py:2629
+msgid "Áudio pausado."
+msgstr ""
+
+#: app/window.py:2615 app/window.py:2631
+msgid "Não foi possível pausar/continuar este sintetizador."
+msgstr ""
+
+#: app/window.py:2623 app/window.py:2640
+msgid "Nenhum áudio em reprodução."
+msgstr ""
+
+#: app/window.py:2640
+msgid "Áudio interrompido."
+msgstr ""
+
+#: app/window.py:2659
+msgid "Não foi possível iniciar a voz no idioma selecionado."
+msgstr ""
+
+#: app/window.py:2661
+msgid "Não foi possível executar o áudio."
+msgstr ""
+
+#: app/window.py:2673
+msgid "Versículo adicionado aos favoritos."
+msgstr "Verse added to favorites."
+
+#: app/window.py:2673
+msgid "Versículo removido dos favoritos."
+msgstr "Verse removed from favorites."
+
+#: app/window.py:2676
+msgid "Favorito salvo."
+msgstr "Favorite saved."
+
+#: app/window.py:2676
+msgid "Favorito removido."
+msgstr "Favorite removed."
+
+#: app/window.py:2702 app/window.py:3408
+msgid "resultado(s)"
+msgstr "result(s)"
+
+#: app/window.py:2702
+msgid "para"
+msgstr "for"
+
+#: app/window.py:2702
+msgid "na tradução"
+msgstr "in translation"
+
+#: app/window.py:2707
+msgid "Nenhum resultado encontrado."
+msgstr "No results found."
+
+#: app/window.py:2731 app/window.py:2848 app/window.py:2903 app/window.py:2969
+#: app/window.py:3200 app/window.py:3548 app/window.py:4196
+msgid "Abrir"
+msgstr "Open"
+
+#: app/window.py:2792
+msgid "Aberto em leitura"
+msgstr "Opened in reader"
+
+#: app/window.py:2795
+msgid "Abrindo"
+msgstr "Opening"
+
+#: app/window.py:2807
+msgid "Anotações rápidas"
+msgstr ""
+
+#: app/window.py:2825
+msgid "Selecione um caderno para ver entradas."
+msgstr ""
+
+#: app/window.py:2830
+msgid "Este caderno ainda não possui entradas."
+msgstr ""
+
+#: app/window.py:2863 app/window.py:4213
+msgid "Remover"
+msgstr "Remove"
+
+#: app/window.py:2884
+msgid "Nenhuma nota encontrada."
+msgstr ""
+
+#: app/window.py:2884
+msgid "Nenhuma nota encontrada para esta tag."
+msgstr ""
+
+#: app/window.py:2951
+msgid "Nenhuma entrada recente em cadernos."
+msgstr ""
+
+#: app/window.py:3027
+msgid "Próximo dia"
+msgstr ""
+
+#: app/window.py:3027
+msgid "sem referência"
+msgstr ""
+
+#: app/window.py:3035
+msgid "Plano concluído."
+msgstr ""
+
+#: app/window.py:3040
+msgid "Ver dias"
+msgstr ""
+
+#: app/window.py:3044
+msgid "Abrir próximo dia"
+msgstr ""
+
+#: app/window.py:3049
+msgid "Concluir próximo dia"
+msgstr ""
+
+#: app/window.py:3054
+msgid "Desfazer último dia"
+msgstr ""
+
+#: app/window.py:3063
+msgid "Nenhum plano disponível."
+msgstr ""
+
+#: app/window.py:3086
+msgid "Estudando"
+msgstr ""
+
+#: app/window.py:3124
+msgid "Selecione um versículo para comparar traduções."
+msgstr ""
+
+#: app/window.py:3127
+msgid "Nenhuma tradução disponível para comparação."
+msgstr ""
+
+#: app/window.py:3138
+msgid "Selecione traduções para comparar."
+msgstr ""
+
+#: app/window.py:3147
+msgid "Versículo indisponível nas traduções selecionadas."
+msgstr ""
+
+#: app/window.py:3171
+msgid "Selecione um versículo para ver referências cruzadas."
+msgstr ""
+
+#: app/window.py:3181
+msgid "Nenhuma referência cruzada importada ainda. Use o botão “Importar”."
+msgstr ""
+
+#: app/window.py:3184
+msgid "Nenhuma referência cruzada cadastrada para este versículo."
+msgstr ""
+
+#: app/window.py:3195
+msgid "Livro"
+msgstr ""
+
+#: app/window.py:3257
+msgid "Nenhum capítulo carregado para estudo."
+msgstr ""
+
+#: app/window.py:3270
+msgid "Contexto de estudo carregado com o capítulo atual."
+msgstr ""
+
+#: app/window.py:3275
+msgid "Selecione um versículo para salvar nota."
+msgstr ""
+
+#: app/window.py:3291
+msgid "Nota de estudo salva."
+msgstr ""
+
+#: app/window.py:3292
+msgid "Nota salva."
+msgstr ""
+
+#: app/window.py:3297
+msgid "Selecione um versículo para remover nota."
+msgstr ""
+
+#: app/window.py:3309
+msgid "Nota removida."
+msgstr ""
+
+#: app/window.py:3311
+msgid "Nenhuma nota para remover."
+msgstr ""
+
+#: app/window.py:3316
+msgid "Selecione um versículo para listar notas do capítulo."
+msgstr ""
+
+#: app/window.py:3322
+msgid "Nenhuma nota neste capítulo."
+msgstr ""
+
+#: app/window.py:3325
+msgid "nota(s) no capítulo"
+msgstr ""
+
+#: app/window.py:3326
+msgid "nota(s) encontradas no capítulo."
+msgstr ""
+
+#: app/window.py:3334
+msgid "Selecione um versículo para copiar a comparação."
+msgstr ""
+
+#: app/window.py:3351
+msgid "Nada para copiar na comparação."
+msgstr ""
+
+#: app/window.py:3361
+msgid "Referências cruzadas atualizadas."
+msgstr ""
+
+#: app/window.py:3376
+msgid "Digite um termo para buscar no estudo."
+msgstr ""
+
+#: app/window.py:3404
+msgid "Nenhum resultado na busca avançada."
+msgstr ""
+
+#: app/window.py:3405
+msgid "Nenhum resultado encontrado com os filtros atuais."
+msgstr ""
+
+#: app/window.py:3408
+msgid "modo"
+msgstr ""
+
+#: app/window.py:3424
+msgid "Entrada removida do caderno."
+msgstr ""
+
+#: app/window.py:3426
+msgid "Entrada não encontrada."
+msgstr ""
+
+#: app/window.py:3444
+msgid ""
+"Arquivo de referências cruzadas não encontrado. Baixe o SQLite e use scripts/"
+"import_scrollmapper_crossrefs.py."
+msgstr ""
+
+#: app/window.py:3446
+msgid "Referências cruzadas: arquivo de origem não encontrado."
+msgstr ""
+
+#: app/window.py:3455 app/window.py:3458
+msgid "Falha ao importar referências cruzadas."
+msgstr ""
+
+#: app/window.py:3456
+msgid "Falha ao importar referências cruzadas"
+msgstr ""
+
+#: app/window.py:3461 app/window.py:3463
+msgid "Referências cruzadas importadas."
+msgstr ""
+
+#: app/window.py:3470 app/window.py:3482
+msgid "Plano já concluído."
+msgstr ""
+
+#: app/window.py:3474 app/window.py:3603
+msgid "Dia concluído"
+msgstr ""
+
+#: app/window.py:3485
+msgid "Abrindo próximo dia"
+msgstr ""
+
+#: app/window.py:3490
+msgid "Nenhum dia concluído para desfazer."
+msgstr ""
+
+#: app/window.py:3495 app/window.py:3603
+msgid "Dia desfeito"
+msgstr ""
+
+#: app/window.py:3499
+msgid "Plano"
+msgstr ""
+
+#: app/window.py:3513 scripts/daily_notification.py:228
+msgid "Fechar"
+msgstr "Close"
+
+#: app/window.py:3541
+msgid "Dia"
+msgstr ""
+
+#: app/window.py:3553
+msgid "Desfazer"
+msgstr ""
+
+#: app/window.py:3553
+msgid "Concluir"
+msgstr ""
+
+#: app/window.py:3567
+msgid "Sem referência"
+msgstr ""
+
+#: app/window.py:3586
+msgid "Abrindo dia"
+msgstr ""
+
+#: app/window.py:3614
+msgid "Caderno criado"
+msgstr ""
+
+#: app/window.py:3619
+msgid "Selecione um versículo para salvar no caderno."
+msgstr ""
+
+#: app/window.py:3624
+msgid "Selecione um caderno válido."
+msgstr ""
+
+#: app/window.py:3637
+msgid "Referência salva no caderno."
+msgstr ""
+
+#: app/window.py:3647
+msgid "Falha ao exportar dados de estudo"
+msgstr ""
+
+#: app/window.py:3648
+msgid "Falha ao exportar dados de estudo."
+msgstr ""
+
+#: app/window.py:3650
+msgid "Dados de estudo exportados para"
+msgstr ""
+
+#: app/window.py:3651
+msgid "Dados de estudo exportados."
+msgstr ""
+
+#: app/window.py:3665
+msgid "Nenhum backup encontrado em Documentos (bibliaroot-estudo-*.json)."
+msgstr ""
+
+#: app/window.py:3666
+msgid "Nenhum backup de estudo encontrado."
+msgstr ""
+
+#: app/window.py:3672
+msgid "Falha ao importar dados de estudo"
+msgstr ""
+
+#: app/window.py:3673
+msgid "Falha ao importar dados de estudo."
+msgstr ""
+
+#: app/window.py:3677
+msgid "Backup importado"
+msgstr ""
+
+#: app/window.py:3677
+msgid "notas"
+msgstr ""
+
+#: app/window.py:3678
+msgid "refs"
+msgstr ""
+
+#: app/window.py:3680
+msgid "Backup de estudo importado."
+msgstr ""
+
+#: app/window.py:3690
+msgid "Falha ao exportar backup completo"
+msgstr ""
+
+#: app/window.py:3691
+msgid "Falha ao exportar backup completo."
+msgstr ""
+
+#: app/window.py:3693
+msgid "Backup completo exportado para"
+msgstr ""
+
+#: app/window.py:3694
+msgid "Backup completo exportado."
+msgstr ""
+
+#: app/window.py:3708
+msgid "Nenhum backup completo encontrado em Documentos."
+msgstr ""
+
+#: app/window.py:3709
+msgid "Nenhum backup completo encontrado."
+msgstr ""
+
+#: app/window.py:3715
+msgid "Falha ao restaurar backup completo"
+msgstr ""
+
+#: app/window.py:3716
+msgid "Falha ao restaurar backup completo."
+msgstr ""
+
+#: app/window.py:3722
+msgid "Backup completo restaurado"
+msgstr ""
+
+#: app/window.py:3722
+msgid "favoritos"
+msgstr ""
+
+#: app/window.py:3724
+msgid "Backup completo restaurado."
+msgstr ""
+
+#: app/window.py:3779
+msgid "Sair do foco"
+msgstr ""
+
+#: app/window.py:3786
+msgid "Modo foco ativado."
+msgstr ""
+
+#: app/window.py:3786
+msgid "Modo foco desativado."
+msgstr ""
+
+#: app/window.py:3838
+msgid "Prévia diária atualizada."
+msgstr "Daily preview updated."
+
+#: app/window.py:3945 app/window.py:3946
+msgid "Falha ao configurar agendamento."
+msgstr "Failed to configure schedule."
+
+#: app/window.py:3947
+msgid "Falha no agendamento diário"
+msgstr "Daily scheduling failure"
+
+#: app/window.py:3949
+msgid "Erro ao aplicar agendamento (copiável):"
+msgstr "Error applying schedule (copyable):"
+
+#: app/window.py:3952
+msgid "Falha no agendamento diário."
+msgstr "Daily scheduling failed."
+
+#: app/window.py:3955
+msgid "Agendamento diário atualizado."
+msgstr "Daily schedule updated."
+
+#: app/window.py:3959
+msgid "Resumo"
+msgstr "Summary"
+
+#: app/window.py:3959 app/window.py:4002
+msgid "envio(s)"
+msgstr "send(s)"
+
+#: app/window.py:3959
+msgid "janela"
+msgstr "window"
+
+#: app/window.py:3960
+msgid "intervalo"
+msgstr "interval"
+
+#: app/window.py:3960 app/window.py:4003
+msgid "min"
+msgstr "min"
+
+#: app/window.py:3963
+msgid "Agendamento diário aplicado."
+msgstr "Daily schedule applied."
+
+#: app/window.py:3975
+msgid "Falha ao testar notificação."
+msgstr "Failed to test notification."
+
+#: app/window.py:3976
+msgid "Teste de notificação falhou"
+msgstr "Notification test failed"
+
+#: app/window.py:3977
+msgid "Teste manual"
+msgstr "Manual test"
+
+#: app/window.py:3979
+msgid "Falha no teste de notificação."
+msgstr "Notification test failed."
+
+#: app/window.py:3981 app/window.py:3984
+msgid "Notificação de teste enviada."
+msgstr "Test notification sent."
+
+#: app/window.py:3982
+msgid "Teste manual executado com sucesso."
+msgstr "Manual test executed successfully."
+
+#: app/window.py:3988
+msgid "Status do timer atualizado."
+msgstr "Timer status updated."
+
+#: app/window.py:3998
+msgid "Prévia indisponível"
+msgstr "Preview unavailable"
+
+#: app/window.py:3999
+msgid "ativado"
+msgstr "enabled"
+
+#: app/window.py:3999
+msgid "desativado"
+msgstr "disabled"
+
+#: app/window.py:4003
+msgid "a cada"
+msgstr "every"
+
+#: app/window.py:4005
+msgid "popup do BíbliaRoot"
+msgstr ""
+
+#: app/window.py:4005
+msgid "nativa"
+msgstr "native"
+
+#: app/window.py:4008
+msgid "tradução ativa"
+msgstr "active translation"
+
+#: app/window.py:4010
+msgid "Status"
+msgstr "Status"
+
+#: app/window.py:4010
+msgid "Janela"
+msgstr "Window"
+
+#: app/window.py:4014
+msgid "persistente"
+msgstr "persistent"
+
+#: app/window.py:4014
+msgid "timeout padrão"
+msgstr "default timeout"
+
+#: app/window.py:4015
+msgid "som"
+msgstr "sound"
+
+#: app/window.py:4015
+msgid "som off"
+msgstr "sound off"
+
+#: app/window.py:4016
+msgid "tradução diária"
+msgstr "daily translation"
+
+#: app/window.py:4049
+msgid ""
+"Timer: systemctl indisponível neste ambiente (ex.: Flatpak sem acesso ao "
+"host)."
+msgstr ""
+
+#: app/window.py:4059
+msgid "systemd --user indisponível"
+msgstr "systemd --user unavailable"
+
+#: app/window.py:4060
+msgid "Timer: falha ao consultar status"
+msgstr "Timer: failed to query status"
+
+#: app/window.py:4068
+msgid "desconhecido"
+msgstr "unknown"
+
+#: app/window.py:4070
+msgid "sem próximo disparo"
+msgstr "no next trigger"
+
+#: app/window.py:4071
+msgid "Timer"
+msgstr "Timer"
+
+#: app/window.py:4071
+msgid "Próximo"
+msgstr "Next"
+
+#: app/window.py:4077
+msgid "Nenhum erro/status para copiar."
+msgstr "No error/status to copy."
+
+#: app/window.py:4081
+msgid "Sem display gráfico para copiar texto."
+msgstr "No graphical display to copy text."
+
+#: app/window.py:4085
+msgid "Erro/status copiado."
+msgstr "Error/status copied."
+
+#: app/window.py:4143
+msgid "Horário inválido. Use o formato HH:MM (ex.: 08:00)."
+msgstr "Invalid time. Use HH:MM format (e.g.: 08:00)."
+
+#: app/window.py:4147
+msgid "Horário inválido. A hora deve estar entre 00:00 e 23:59."
+msgstr "Invalid time. Time must be between 00:00 and 23:59."
+
+#: app/window.py:4171
+msgid "Nenhum favorito salvo ainda."
+msgstr "No saved favorites yet."
+
+#: app/window.py:4173
+msgid "favorito(s) salvos."
+msgstr "favorite(s) saved."
+
+#: app/services/daily_content.py:39
+msgid "Nenhum versiculo disponivel no banco atual."
+msgstr "No verse available in the current database."
+
+#: app/services/daily_content.py:50
+msgid "Reflexão"
+msgstr "Reflection"
+
+#: app/services/daily_content.py:50
+msgid "Observe o contexto de"
+msgstr "Observe the context of"
+
+#: app/services/daily_content.py:51
+msgid "e destaque uma verdade central. "
+msgstr "and highlight a central truth. "
+
+#: app/services/daily_content.py:52
+msgid ""
+"Pergunte: o que este texto revela sobre Deus, sobre a pessoa humana e sobre "
+"a prática cristã hoje?"
+msgstr ""
+"Ask: what does this text reveal about God, the human person, and Christian "
+"practice today?"
+
+#: app/services/daily_content.py:58
+msgid "Texto-base"
+msgstr "Base text"
+
+#: app/services/daily_content.py:59
+msgid "Pontos:"
+msgstr "Points:"
+
+#: app/services/daily_content.py:61
+msgid "1. Verdade principal do texto"
+msgstr "1. Main truth of the text"
+
+#: app/services/daily_content.py:63
+msgid "2. Aplicação prática para hoje"
+msgstr "2. Practical application for today"
+
+#: app/services/daily_content.py:65
+msgid "3. Resposta de fé e oração"
+msgstr "3. Response of faith and prayer"
+
+#: app/services/daily_content.py:98
+msgid "O amor de Deus"
+msgstr "God's love"
+
+#: app/services/daily_content.py:100
+msgid "Viver pela fé"
+msgstr "Living by faith"
+
+#: app/services/daily_content.py:102
+msgid "Esperança em Deus"
+msgstr "Hope in God"
+
+#: app/services/daily_content.py:104
+msgid "Salvação e graça"
+msgstr "Salvation and grace"
+
+#: app/services/daily_content.py:106
+msgid "Vida de oração"
+msgstr "Prayer life"
+
+#: app/services/daily_content.py:107
+msgid "Aplicação prática da Palavra"
+msgstr "Practical application of the Word"
+
+#: scripts/daily_notification.py:21
+msgid "Envia notificação de conteúdo diário do BíbliaRoot."
+msgstr ""
+
+#: scripts/daily_notification.py:25
+msgid "Sobrescreve o modo salvo nas configurações."
+msgstr "Overrides the mode saved in settings."
+
+#: scripts/daily_notification.py:31
+msgid "Apenas imprime o conteúdo no terminal (sem notify-send)."
+msgstr "Only prints the content to the terminal (without notify-send)."
+
+#: scripts/daily_notification.py:45
+msgid "Conteúdo diário desativado nas configurações."
+msgstr "Daily content disabled in settings."
+
+#: scripts/daily_notification.py:77
+msgid "notify-send não encontrado neste ambiente."
+msgstr "notify-send not found in this environment."
+
+#: scripts/daily_notification.py:82
+msgid "Falha ao enviar notificação"
+msgstr "Failed to send notification"
+
+#~ msgid "BibliaApp"
+#~ msgstr "BibliaApp"
+
+#~ msgid "BíbliaApp Linux"
+#~ msgstr "BibliaApp Linux"
+
+#~ msgid "Escolha entre notificação nativa ou popup do BíbliaApp"
+#~ msgstr "Choose between native notification or BibliaApp popup"
+
+#~ msgid "Popup do BíbliaApp"
+#~ msgstr "BíbliaApp popup"
+
+#~ msgid "popup do BíbliaApp"
+#~ msgstr "BibliaApp popup"
+
+#~ msgid "Envia notificação de conteúdo diário do BíbliaApp."
+#~ msgstr "Sends a daily content notification from BibliaApp."
+
+#~ msgid "BíbliaApp"
+#~ msgstr "BíbliaApp"
+
+#~ msgid ""
+#~ "Ctrl+F: busca | Ctrl+L: leitura | Ctrl+D: favoritos | Ctrl+, : "
+#~ "configurações | "
+#~ msgstr ""
+#~ "Ctrl+F: search | Ctrl+L: reader | Ctrl+D: favorites | Ctrl+, : settings | "

@@ -1,0 +1,31 @@
+pkgname=bibliaroot-linux
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Leitura e estudo bíblico offline em GTK4/libadwaita"
+arch=('x86_64')
+url="https://github.com/lorztechsistemas/holly-bible-linux"
+license=('MIT')
+depends=('python' 'python-gobject' 'gtk4' 'libadwaita' 'python-requests')
+makedepends=()
+source=("${pkgname}-${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  install -dm755 "${pkgdir}/usr/share/bibliaroot"
+  cp -r app data locale resources scripts tests main.py pyproject.toml requirements.txt README.md "${pkgdir}/usr/share/bibliaroot/"
+
+  install -dm755 "${pkgdir}/usr/bin"
+  cat > "${pkgdir}/usr/bin/bibliaroot" <<'EOF'
+#!/usr/bin/env bash
+export PYTHONPATH="/usr/share/bibliaroot:${PYTHONPATH}"
+exec python /usr/share/bibliaroot/main.py "$@"
+EOF
+  chmod 755 "${pkgdir}/usr/bin/bibliaroot"
+
+  install -Dm644 packaging/flatpak/io.github.lorztechsistemas.bibliaroot.desktop \
+    "${pkgdir}/usr/share/applications/io.github.lorztechsistemas.bibliaroot.desktop"
+  install -Dm644 resources/icons/io.github.bibliaapp.svg \
+    "${pkgdir}/usr/share/icons/hicolor/scalable/apps/io.github.lorztechsistemas.bibliaroot.svg"
+}

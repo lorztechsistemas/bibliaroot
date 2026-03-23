@@ -1,0 +1,222 @@
+window {
+  background-color: @window_bg_color;
+  background-image:
+    radial-gradient(circle at 8% 8%, alpha(@accent_bg_color, 0.10), transparent 42%),
+    radial-gradient(circle at 92% 12%, alpha(@success_color, 0.07), transparent 40%),
+    linear-gradient(180deg, alpha(@window_bg_color, 0.98), @window_bg_color);
+}
+
+.card {
+  border-radius: 14px;
+  border: 1px solid alpha(@borders, 0.6);
+  background-color: alpha(@window_bg_color, 0.70);
+}
+
+.toolbar-card {
+  padding: 4px;
+  background:
+    linear-gradient(180deg, alpha(@accent_bg_color, 0.06), alpha(@accent_bg_color, 0.02));
+}
+
+.app-header-footer {
+  background:
+    linear-gradient(135deg, alpha(@accent_bg_color, 0.10), alpha(@window_bg_color, 0.82) 58%),
+    linear-gradient(180deg, alpha(@window_bg_color, 0.94), alpha(@window_bg_color, 0.84));
+}
+
+.soft-button {
+  min-height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px;
+}
+
+.list-scroller {
+  border-radius: 14px;
+  border: 1px solid alpha(@borders, 0.45);
+  background-color: alpha(@window_bg_color, 0.45);
+}
+
+.sidebar-book-row {
+  margin: 2px 4px;
+  border-radius: 10px;
+}
+
+.compact-row {
+  min-height: 44px;
+}
+
+.compact-row > box {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.verse-list row,
+.search-list row,
+.boxed-list row {
+  margin-bottom: 12px;
+}
+
+.verse-list row:last-child,
+.search-list row:last-child,
+.boxed-list row:last-child {
+  margin-bottom: 0;
+}
+
+.verse-list,
+.search-list {
+  padding: 6px;
+}
+
+.boxed-list {
+  padding: 6px;
+}
+
+.dim-label {
+  opacity: 0.85;
+}
+
+.monospace {
+  font-family: Monospace;
+}
+
+entry,
+searchentry,
+spinbutton,
+dropdown {
+  min-height: 34px;
+  border-radius: 8px;
+}
+
+entry,
+searchentry {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+spinbutton entry {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+dropdown > button {
+  min-height: 34px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 8px;
+}
+
+preferencespage preferencesgroup {
+  margin-bottom: 10px;
+}
+
+.card > box {
+  border-radius: 14px;
+}
+
+.toolbar-card > box {
+  padding: 2px;
+}
+
+.sidebar-book-row:selected {
+  background:
+    linear-gradient(180deg, alpha(@accent_bg_color, 0.16), alpha(@accent_bg_color, 0.10));
+  border-radius: 10px;
+  border: 1px solid alpha(@accent_bg_color, 0.22);
+}
+
+.sidebar-book-row:hover {
+  background-color: alpha(@accent_bg_color, 0.05);
+}
+
+.verse-text,
+.search-text,
+.favorite-text,
+.reader-continuous-text {
+  line-height: 1.5;
+}
+
+.reader-continuous-text {
+  margin-right: 4px;
+  letter-spacing: 0.01em;
+  line-height: 1.78;
+  opacity: 0.98;
+}
+
+.reader-continuous-title {
+  font-weight: 700;
+  font-size: 1.12em;
+  opacity: 0.95;
+  margin-bottom: 6px;
+}
+
+.reader-paper {
+  border-radius: 18px;
+  border: 1px solid alpha(@borders, 0.55);
+  background:
+    linear-gradient(180deg, alpha(@window_bg_color, 0.92), alpha(@window_bg_color, 0.86));
+  box-shadow: 0 10px 28px alpha(black, 0.06);
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.verse-list row.card,
+.search-list row.card,
+.boxed-list row.card {
+  background:
+    linear-gradient(180deg, alpha(@window_bg_color, 0.88), alpha(@window_bg_color, 0.78));
+  border: 1px solid alpha(@borders, 0.55);
+  border-radius: 14px;
+}
+
+.verse-list row.card:hover,
+.search-list row.card:hover,
+.boxed-list row.card:hover {
+  border-color: alpha(@accent_bg_color, 0.28);
+}
+
+.verse-list row.study-annotated-row {
+  border-color: alpha(@accent_bg_color, 0.38);
+  background:
+    linear-gradient(180deg, alpha(@accent_bg_color, 0.08), alpha(@window_bg_color, 0.82));
+}
+
+.caption {
+  font-size: 0.9em;
+}
+
+/* Blocos da aba de estudo */
+.study-block-title {
+  letter-spacing: 0.02em;
+}
+
+.study-muted-card {
+  background:
+    linear-gradient(180deg, alpha(@window_bg_color, 0.78), alpha(@window_bg_color, 0.70));
+}
+
+.status-line {
+  padding-left: 2px;
+}
+
+.control-field {
+  background-color: alpha(@window_bg_color, 0.92);
+}
+
+headerbar {
+  background:
+    linear-gradient(180deg, alpha(@headerbar_bg_color, 0.95), alpha(@headerbar_bg_color, 0.88));
+}
+
+preferencespage row {
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+preferencespage row.activatable:hover {
+  background-color: alpha(@accent_bg_color, 0.04);
+}
+
+preferencespage row:last-child {
+  margin-bottom: 0;
+}

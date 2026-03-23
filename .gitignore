@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+.venv/
+venv/
+
+.flatpak-builder/
+build-flatpak/
+
+data/user/
+
+*.tar.gz
+
+.DS_Store
