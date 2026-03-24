@@ -450,10 +450,9 @@ class BibleBackend:
 
     def set_tts_engine(self, engine: str) -> UserSettings:
         value = (engine or "auto").strip().lower()
-        # Mantemos compatibilidade, mas o produto agora usa Piper como motor único na UI.
         if value not in {"auto", "piper", "rhvoice", "speechd", "espeak-ng", "espeak"}:
             raise ValueError(f"Motor TTS inválido: {value}")
-        return self.settings.update(tts_engine="piper" if value in {"auto", "piper"} else value)
+        return self.settings.update(tts_engine=value)
 
     def set_daily_content_settings(
         self,

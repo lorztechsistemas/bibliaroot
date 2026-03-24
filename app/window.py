@@ -1339,12 +1339,6 @@ class MainWindow(Adw.ApplicationWindow):
                     self.tts_voice_dropdown.set_selected(self.tts_voice_codes.index(voice_lang))
                 except ValueError:
                     self.tts_voice_dropdown.set_selected(0)
-            # Força migração silenciosa de configs antigas para Piper.
-            if str(getattr(settings, "tts_engine", "piper") or "piper").lower() != "piper":
-                try:
-                    self._backend.set_tts_engine("piper")
-                except Exception:
-                    pass
             if hasattr(self, "daily_enabled_switch"):
                 self.daily_enabled_switch.set_active(bool(settings.daily_content_enabled))
             if hasattr(self, "daily_mode_dropdown"):

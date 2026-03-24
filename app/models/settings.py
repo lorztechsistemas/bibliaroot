@@ -17,7 +17,7 @@ class UserSettings:
     ui_language: str = "system"  # system | pt_BR | en | es
     reading_layout: str = "cards"  # cards | continuous
     tts_voice_language: str = "auto"  # auto | pt-br | en | es | fr | de | it
-    tts_engine: str = "piper"  # piper (mantido por compatibilidade de settings)
+    tts_engine: str = "auto"  # auto | piper | rhvoice | speechd | espeak-ng | espeak
     daily_content_enabled: bool = False
     daily_content_mode: str = "verse"  # verse | study | outline
     daily_content_translation: str = ""  # vazio = usar tradução ativa
