@@ -1887,8 +1887,7 @@ class MainWindow(Adw.ApplicationWindow):
             return False
 
     def _tts_engine_preference(self) -> str:
-        # Produto simplificado: Piper é o motor principal/único na UI.
-        # Fallbacks internos permanecem apenas para não quebrar em ambientes sem Piper.
+        # Produto simplificado: Piper é o único motor suportado na UI.
         return "piper"
 
     def _is_flatpak_runtime(self) -> bool:
@@ -2459,7 +2458,6 @@ class MainWindow(Adw.ApplicationWindow):
         if not ok:
             self._tts_backend = None
             self._sync_tts_buttons()
-            ok = self._start_command_tts(text, translation=translation)
         return ok
 
     def _start_command_tts(self, text: str, *, translation: str | None = None) -> bool:
