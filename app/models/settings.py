@@ -29,6 +29,7 @@ class UserSettings:
     daily_delivery_mode: str = "native"  # native | popup
     daily_sound_enabled: bool = False
     daily_sound_name: str = "soft"
+    daily_background_enabled: bool = False
     reading_history: list[dict[str, Any]] = field(default_factory=list)
 
 

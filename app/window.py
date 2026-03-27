@@ -66,6 +66,8 @@ class MainWindow(Adw.ApplicationWindow):
         self._time_entry_mask_syncing = False
         self._last_daily_error_text: str = ""
         self._search_entry_syncing = False
+        self._daily_session_scheduler_id: int | None = None
+        self._daily_session_delivered_keys: set[str] = set()
 
         self._build_ui()
         self.connect("close-request", self._on_close_request)
@@ -905,11 +907,11 @@ class MainWindow(Adw.ApplicationWindow):
         )
         daily_actions_group = Adw.PreferencesGroup(
             title=_("Ações"),
-            description=_("Aplicar, testar e consultar o agendamento configurado no sistema."),
+            description=_("Aplicar, testar e acompanhar a configuração das mensagens automáticas."),
         )
         daily_status_group = Adw.PreferencesGroup(
-            title=_("Resumo e diagnóstico"),
-            description=_("Resumo atual da configuração e status do timer do sistema."),
+            title=_("Resumo e status"),
+            description=_("Resumo atual da configuração e situação do envio automático."),
         )
 
         row_enable = Adw.SwitchRow(
@@ -1075,8 +1077,8 @@ class MainWindow(Adw.ApplicationWindow):
         daily_actions_group.add(row_actions_preview)
 
         row_actions_apply = Adw.ActionRow(
-            title=_("Agendamento do sistema"),
-            subtitle=_("Usa systemd --user no Linux"),
+            title=_("Mensagens automáticas"),
+            subtitle=_("Ative os horários e deixe o envio diário funcionando no seu dispositivo"),
         )
         btn_apply = Gtk.Button(label=_("Aplicar"))
         btn_apply.add_css_class("suggested-action")
@@ -1096,10 +1098,10 @@ class MainWindow(Adw.ApplicationWindow):
         daily_actions_group.add(row_actions_apply)
 
         row_status_actions = Adw.ActionRow(
-            title=_("Diagnóstico"),
-            subtitle=_("Consultar status do timer e último erro/sucesso"),
+            title=_("Verificação"),
+            subtitle=_("Consulte o status do envio diário e copie detalhes, se necessário"),
         )
-        btn_status = Gtk.Button(label=_("Status do timer"))
+        btn_status = Gtk.Button(label=_("Ver status"))
         btn_status.add_css_class("soft-button")
         btn_status.set_valign(Gtk.Align.CENTER)
         btn_status.connect("clicked", self._on_daily_status_clicked)
@@ -1120,7 +1122,7 @@ class MainWindow(Adw.ApplicationWindow):
         daily_preview_row = self._wrap_in_preferences_row(self.daily_preview_label)
         daily_status_group.add(daily_preview_row)
         self.daily_timer_status_label = Gtk.Label(
-            label=_("Timer: status não consultado."), xalign=0, wrap=True
+            label=_("Status ainda não consultado."), xalign=0, wrap=True
         )
         self.daily_timer_status_label.add_css_class("dim-label")
         self.daily_timer_status_label.set_selectable(True)
@@ -1174,6 +1176,58 @@ class MainWindow(Adw.ApplicationWindow):
         self.status_line.set_text(
             f'{_("Tradução ativa")}: {state.translation} | {len(state.translations)} {_("traduções disponíveis")}'
         )
+
+    def _is_flatpak_runtime(self) -> bool:
+        return bool(os.getenv("FLATPAK_ID", "").strip())
+
+    def _ensure_daily_scheduler(self) -> None:
+        if not self._is_flatpak_runtime():
+            if self._daily_session_scheduler_id is not None:
+                GLib.source_remove(self._daily_session_scheduler_id)
+                self._daily_session_scheduler_id = None
+            return
+        if self._daily_session_scheduler_id is None:
+            self._daily_session_scheduler_id = GLib.timeout_add_seconds(20, self._daily_session_tick)
+        self._daily_session_tick()
+
+    def _daily_session_tick(self) -> bool:
+        if not self._is_flatpak_runtime():
+            self._daily_session_scheduler_id = None
+            return False
+        settings = self._backend.get_settings()
+        today_prefix = datetime.now().strftime("%Y-%m-%d")
+        self._daily_session_delivered_keys = {
+            key for key in self._daily_session_delivered_keys if key.startswith(today_prefix)
+        }
+        if not bool(getattr(settings, "daily_content_enabled", False)):
+            return True
+        current_hhmm = datetime.now().strftime("%H:%M")
+        for scheduled_hhmm in self._backend.compute_daily_schedule_times(settings):
+            if scheduled_hhmm != current_hhmm:
+                continue
+            delivery_key = f"{today_prefix} {scheduled_hhmm}"
+            if delivery_key in self._daily_session_delivered_keys:
+                continue
+            self._daily_session_delivered_keys.add(delivery_key)
+            self._run_daily_notification_now()
+        return True
+
+    def _run_daily_notification_now(self) -> None:
+        project_root = Path(__file__).resolve().parents[1]
+        script = project_root / "scripts" / "daily_notification.py"
+        try:
+            subprocess.Popen(
+                [sys.executable, str(script)],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                cwd=str(project_root),
+            )
+        except Exception as exc:
+            self._last_daily_error_text = str(exc)
+            if hasattr(self, "daily_timer_status_label"):
+                self.daily_timer_status_label.set_text(
+                    f'{_("Não foi possível enviar a mensagem automática")}: {exc}'
+                )
 
     def _refresh_books(
         self, *, preferred_book_id: int | None = None, preferred_chapter: int = 1
@@ -2260,7 +2314,6 @@ class MainWindow(Adw.ApplicationWindow):
             return False
         self._tts_chunk_queue = [(chunk, translation) for chunk in chunks]
         self._tts_chunk_total = len(self._tts_chunk_queue)
-        self._prefetch_upcoming_piper_chunks(limit=2)
         return self._start_next_piper_chunk()
 
     def _start_next_piper_chunk(self) -> bool:
@@ -2337,7 +2390,9 @@ class MainWindow(Adw.ApplicationWindow):
             self._tts_process = None
             self._tts_paused = False
             self._sync_tts_buttons()
-            self._prefetch_upcoming_piper_chunks(limit=2)
+            # Só preaquece o próximo bloco depois que o primeiro WAV já ficou pronto,
+            # para reduzir a latência inicial e evitar a sensação de "carregar o capítulo todo".
+            self._prefetch_upcoming_piper_chunks(limit=1)
             chunk_idx = self._tts_chunk_total - len(self._tts_chunk_queue)
             if chunk_idx <= 1:
                 self.status_line.set_text(_("Leitura em voz iniciada."))
@@ -2568,6 +2623,12 @@ class MainWindow(Adw.ApplicationWindow):
 
     def _on_close_request(self, *_args) -> bool:
         self._stop_tts()
+        app = self.get_application()
+        if app is not None and hasattr(app, "handle_window_close") and app.handle_window_close(self):
+            return True
+        if self._daily_session_scheduler_id is not None:
+            GLib.source_remove(self._daily_session_scheduler_id)
+            self._daily_session_scheduler_id = None
         return False
 
     def _on_speak_text_clicked(self, _button: Gtk.Button, text: str, translation: str | None = None) -> None:
@@ -3887,45 +3948,60 @@ class MainWindow(Adw.ApplicationWindow):
             self._toast(str(exc))
             return
 
-        project_root = Path(__file__).resolve().parents[1]
-        script = project_root / "scripts" / "install_daily_timer.py"
-        cmd = [
-            sys.executable,
-            str(script),
-            "--time",
-            time_str,
-            "--end-time",
-            end_time_str,
-            "--mode",
-            mode,
-            "--count",
-            str(count),
-            "--interval",
-            str(interval),
-        ]
-        if not enabled:
-            cmd = [sys.executable, str(script), "--disable"]
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        if result.returncode != 0:
-            msg = (result.stderr or result.stdout or _("Falha ao configurar agendamento.")).strip()
-            short_msg = msg.splitlines()[-1] if msg else _("Falha ao configurar agendamento.")
-            self.status_line.set_text(f'{_("Falha no agendamento diário")}: {short_msg}')
-            self.daily_timer_status_label.set_text(
-                _("Erro ao aplicar agendamento (copiável):") + "\n" + msg
-            )
-            self._last_daily_error_text = msg
-            self._toast(_("Falha no agendamento diário."))
-            print(msg)
-            return
-        success_msg = (result.stdout or _("Agendamento diário atualizado.")).strip()
+        if self._is_flatpak_runtime():
+            app = self.get_application()
+            granted = None
+            portal_msg = ""
+            if app is not None and hasattr(app, "configure_daily_background"):
+                granted, portal_msg = app.configure_daily_background(interactive=True)
+            if enabled:
+                success_msg = portal_msg or _("Mensagens automáticas salvas com sucesso.")
+                if granted is False:
+                    success_msg = _(
+                        "Configuração salva. Verifique nas permissões do sistema se o envio automático está permitido."
+                    )
+            else:
+                success_msg = portal_msg or _("Mensagens automáticas desativadas.")
+        else:
+            project_root = Path(__file__).resolve().parents[1]
+            script = project_root / "scripts" / "install_daily_timer.py"
+            cmd = [
+                sys.executable,
+                str(script),
+                "--time",
+                time_str,
+                "--end-time",
+                end_time_str,
+                "--mode",
+                mode,
+                "--count",
+                str(count),
+                "--interval",
+                str(interval),
+            ]
+            if not enabled:
+                cmd = [sys.executable, str(script), "--disable"]
+            result = subprocess.run(cmd, capture_output=True, text=True)
+            if result.returncode != 0:
+                msg = (result.stderr or result.stdout or _("Falha ao configurar agendamento.")).strip()
+                short_msg = msg.splitlines()[-1] if msg else _("Falha ao configurar agendamento.")
+                self.status_line.set_text(f'{_("Falha no agendamento diário")}: {short_msg}')
+                self.daily_timer_status_label.set_text(
+                    _("Erro ao aplicar agendamento (copiável):") + "\n" + msg
+                )
+                self._last_daily_error_text = msg
+                self._toast(_("Falha no agendamento diário."))
+                print(msg)
+                return
+            success_msg = (result.stdout or _("Agendamento diário atualizado.")).strip()
         self._last_daily_error_text = ""
         self.status_line.set_text(
             success_msg
-            + f' {_("Resumo")}: {len(computed_times)} {_("envio(s)")}, {_("janela")} {time_str}→{end_time_str}, '
+            + f' {_("Resumo")}: {len(computed_times)} {_("envio(s)")}, {_("horário")} {time_str}→{end_time_str}, '
             + f'{_("intervalo")} {interval} {_("min")}.'
         )
         self._refresh_daily_timer_status()
-        self._toast(_("Agendamento diário aplicado."))
+        self._toast(_("Mensagens automáticas atualizadas."))
 
     def _on_daily_disable_clicked(self, _button: Gtk.Button) -> None:
         if hasattr(self, "daily_enabled_switch"):
@@ -3950,7 +4026,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     def _on_daily_status_clicked(self, _button: Gtk.Button) -> None:
         self._refresh_daily_timer_status()
-        self._toast(_("Status do timer atualizado."))
+        self._toast(_("Status atualizado."))
 
     def _update_daily_preview_label(self, force_refresh: bool = False) -> None:
         if not hasattr(self, "daily_preview_label"):
@@ -4006,12 +4082,22 @@ class MainWindow(Adw.ApplicationWindow):
     def _refresh_daily_timer_status(self) -> None:
         if not hasattr(self, "daily_timer_status_label"):
             return
+        if self._is_flatpak_runtime():
+            app = self.get_application()
+            if app is not None and hasattr(app, "background_status_text"):
+                self.daily_timer_status_label.set_text(app.background_status_text())
+            else:
+                self.daily_timer_status_label.set_text(
+                    _("Não foi possível verificar o envio automático nesta sessão.")
+                )
+            self._last_daily_error_text = ""
+            return
         timer_name = f"{DAILY_TIMER_NAME}.timer"
         try:
             cmd = self._systemctl_user_cmd()
         except FileNotFoundError:
             self.daily_timer_status_label.set_text(
-                _("Timer: systemctl indisponível neste ambiente (ex.: Flatpak sem acesso ao host).")
+                _("Não foi possível verificar o envio automático neste ambiente.")
             )
             return
         result = subprocess.run(
@@ -4022,7 +4108,7 @@ class MainWindow(Adw.ApplicationWindow):
         )
         if result.returncode != 0:
             msg = (result.stderr or result.stdout or _("systemd --user indisponível")).strip()
-            self.daily_timer_status_label.set_text(f'{_("Timer: falha ao consultar status")} ({msg})')
+            self.daily_timer_status_label.set_text(f'{_("Não foi possível consultar o status")} ({msg})')
             self._last_daily_error_text = msg
             return
         data: dict[str, str] = {}
@@ -4033,7 +4119,9 @@ class MainWindow(Adw.ApplicationWindow):
         active = data.get("ActiveState", _("desconhecido"))
         next_elapse = data.get("NextElapseUSecRealtime", "")
         next_text = next_elapse if next_elapse else _("sem próximo disparo")
-        self.daily_timer_status_label.set_text(f'{_("Timer")}: {active} | {_("Próximo")}: {next_text}')
+        self.daily_timer_status_label.set_text(
+            f'{_("Mensagens automáticas")}: {active} | {_("Próximo horário")}: {next_text}'
+        )
         self._last_daily_error_text = ""
 
     def _on_copy_daily_error_clicked(self, _button: Gtk.Button) -> None:

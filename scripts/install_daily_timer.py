@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import os
 from pathlib import Path
+import shlex
 import shutil
 import subprocess
 import sys
@@ -93,7 +94,9 @@ WantedBy=timers.target
 """
 
     if _is_flatpak_runtime():
-        raise RuntimeError("Agendamento diário não é suportado na edição Flatpak sandboxed.")
+        raise RuntimeError(
+            "Na edição Flatpak o agendamento diário roda na sessão do app, sem systemd --user."
+        )
 
     unit_dir = systemd_user_dir()
     unit_dir.mkdir(parents=True, exist_ok=True)
@@ -107,7 +110,9 @@ WantedBy=timers.target
 def _build_service_exec(project_root: Path) -> tuple[str, str]:
     flatpak_id = os.getenv("FLATPAK_ID", "").strip()
     if flatpak_id:
-        raise RuntimeError("Agendamento diário não é suportado na edição Flatpak sandboxed.")
+        raise RuntimeError(
+            "Na edição Flatpak o agendamento diário roda na sessão do app, sem systemd --user."
+        )
 
     script_path = project_root / "scripts" / "daily_notification.py"
     exec_cmd = f"/usr/bin/env python3 {shlex.quote(str(script_path))}"
@@ -157,8 +162,9 @@ def main() -> int:
 
     if args.disable:
         if _is_flatpak_runtime():
-            print("Agendamento diário não é suportado na edição Flatpak sandboxed.")
-            return 1
+            backend.set_daily_content_settings(enabled=False)
+            print("Agendamento diário desativado. No Flatpak, o background/autostart do app foi desligado.")
+            return 0
         try:
             run_systemctl("disable", "--now", f"{SERVICE_NAME}.timer")
         except FileNotFoundError:
@@ -186,6 +192,13 @@ def main() -> int:
         messages_per_day=chosen_count,
         interval_minutes=chosen_interval,
     )
+
+    if _is_flatpak_runtime():
+        print(
+            f"Agendamento diário salvo: {chosen_time} até {chosen_end_time} ({chosen_mode}) | "
+            f"intervalo {chosen_interval} min. No Flatpak, a execução usa o modo background do app."
+        )
+        return 0
 
     project_root = Path(__file__).resolve().parents[1]
     write_units(project_root, chosen_time, chosen_end_time, chosen_count, chosen_interval)
