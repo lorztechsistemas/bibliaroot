@@ -6,9 +6,9 @@
   <summary xml:lang="pt-BR">Leitura e estudo bíblico offline para Linux</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
-  <url type="homepage">https://github.com/lorztechsistemas/bibliaroot</url>
-  <url type="bugtracker">https://github.com/lorztechsistemas/bibliaroot/issues</url>
-  <url type="vcs-browser">https://github.com/lorztechsistemas/bibliaroot</url>
+  <url type="homepage">https://github.com/lorztechsistemas/holly-bible-linux</url>
+  <url type="bugtracker">https://github.com/lorztechsistemas/holly-bible-linux/issues</url>
+  <url type="vcs-browser">https://github.com/lorztechsistemas/holly-bible-linux</url>
   <developer id="io.github.lorztechsistemas">
     <name>Lorztech Sistemas</name>
   </developer>
@@ -27,15 +27,15 @@
   <screenshots>
     <screenshot type="default">
       <caption>Main reading view with navigation, quick search, and highlighted verses</caption>
-      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/bibliaroot/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/reader-overview.png</image>
+      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/holly-bible-linux/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/reader-overview.png</image>
     </screenshot>
     <screenshot>
       <caption>Text search with results grouped by reference</caption>
-      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/bibliaroot/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/search-results.png</image>
+      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/holly-bible-linux/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/search-results.png</image>
     </screenshot>
     <screenshot>
       <caption>Study workspace with notes, notebooks, and reading plans</caption>
-      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/bibliaroot/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/study-workspace.png</image>
+      <image type="source">https://raw.githubusercontent.com/lorztechsistemas/holly-bible-linux/b09bbb13c1cc595e531d8d89255ab9e8ae42dbe7/assets/screenshots/study-workspace.png</image>
     </screenshot>
   </screenshots>
   <categories>

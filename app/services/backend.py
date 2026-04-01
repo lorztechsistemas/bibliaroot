@@ -123,6 +123,31 @@ class BibleBackend:
             catalog.append({"code": code, "label": label, "language": language})
         return catalog
 
+    @staticmethod
+    def _normalize_language(language: str) -> str:
+        value = str(language or "").strip().replace("_", "-").lower()
+        if not value:
+            return ""
+        return value.split("-", 1)[0]
+
+    def active_translation_language(self) -> str:
+        meta = self.db.get_translation_metadata(self.db.translation)
+        return self._normalize_language(str(meta.get("language", "") or ""))
+
+    def find_translation_for_language(self, language: str) -> str | None:
+        target = self._normalize_language(language)
+        if not target:
+            return None
+        current = self.db.translation
+        catalog = self.list_translation_catalog()
+        current_match = next((item for item in catalog if item["code"] == current), None)
+        if current_match and self._normalize_language(current_match.get("language", "")) == target:
+            return current
+        for item in catalog:
+            if self._normalize_language(item.get("language", "")) == target:
+                return item["code"]
+        return None
+
     def list_books(self) -> list[dict[str, Any]]:
         return self.db.get_books()
 

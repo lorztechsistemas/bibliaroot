@@ -18,20 +18,32 @@ class TranslationSwitcher(Gtk.Box):
         self._visible_catalog: list[dict[str, str]] = []
         self._language_filter_codes: list[str] = [""]
 
-        label = Gtk.Label(label=_("Tradução"))
+        label = Gtk.Label(label=_("Bíblia"))
         label.set_xalign(0)
+        label.set_valign(Gtk.Align.CENTER)
         self.append(label)
 
+        filter_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+        filter_label = Gtk.Label(label=_("Idioma"), xalign=0)
+        filter_label.add_css_class("dim-label")
+        filter_box.append(filter_label)
         self.language_dropdown = Gtk.DropDown.new_from_strings([_("Todos")])
-        self.language_dropdown.set_tooltip_text(_("Filtrar traduções por idioma"))
+        self.language_dropdown.set_tooltip_text(_("Filtrar versões bíblicas por idioma"))
         self.language_dropdown.connect("notify::selected", self._on_language_filter_changed)
-        self.append(self.language_dropdown)
+        filter_box.append(self.language_dropdown)
+        self.append(filter_box)
 
+        version_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+        version_label = Gtk.Label(label=_("Versão ativa"), xalign=0)
+        version_label.add_css_class("dim-label")
+        version_box.append(version_label)
         self._items = ["ARA", "NVI", "ARC"]
         self._codes = list(self._items)
         self.dropdown = Gtk.DropDown.new_from_strings(self._items)
+        self.dropdown.set_tooltip_text(_("Selecionar tradução bíblica ativa"))
         self.dropdown.connect("notify::selected", self._on_selected_changed)
-        self.append(self.dropdown)
+        version_box.append(self.dropdown)
+        self.append(version_box)
 
     def set_translations(self, translations: list[str], selected: str | None = None) -> None:
         self._catalog = []
@@ -86,7 +98,13 @@ class TranslationSwitcher(Gtk.Box):
             self._suspend_notify = False
 
     def _rebuild_language_filter(self, selected_code: str | None = None) -> None:
-        languages = sorted({item["language"] for item in self._catalog if item["language"]})
+        languages = sorted(
+            {
+                self._normalize_language(item["language"])
+                for item in self._catalog
+                if self._normalize_language(item["language"])
+            }
+        )
         self._language_filter_codes = [""] + languages
         labels = [_("Todos")] + languages
         self.language_dropdown.set_model(Gtk.StringList.new(labels))
@@ -94,7 +112,7 @@ class TranslationSwitcher(Gtk.Box):
         # Seleciona automaticamente o idioma da tradução atual, se existir.
         if selected_code:
             match = next((i for i in self._catalog if i["code"] == selected_code), None)
-            selected_language = (match or {}).get("language", "")
+            selected_language = self._normalize_language((match or {}).get("language", ""))
             self._set_language_filter(str(selected_language or ""))
         else:
             self._set_language_filter("")
@@ -107,13 +125,26 @@ class TranslationSwitcher(Gtk.Box):
             idx = 0
         self.language_dropdown.set_selected(idx)
 
+    @staticmethod
+    def _normalize_language(language_code: str) -> str:
+        value = str(language_code or "").strip().replace("_", "-").lower()
+        if not value:
+            return ""
+        return value.split("-", 1)[0]
+
     def _current_language_filter(self) -> str:
         idx = int(self.language_dropdown.get_selected())
         if idx < 0 or idx >= len(self._language_filter_codes):
             return ""
         return self._language_filter_codes[idx]
 
-    def _apply_language_filter(self, selected_code: str | None = None) -> None:
+    def _current_selected_code(self) -> str | None:
+        current_index = self.dropdown.get_selected()
+        if current_index == Gtk.INVALID_LIST_POSITION or not (0 <= current_index < len(self._codes)):
+            return None
+        return self._codes[current_index]
+
+    def _apply_language_filter(self, selected_code: str | None = None) -> str | None:
         previous_selected_code = None
         current_index = self.dropdown.get_selected()
         if current_index != Gtk.INVALID_LIST_POSITION and 0 <= current_index < len(self._codes):
@@ -121,7 +152,12 @@ class TranslationSwitcher(Gtk.Box):
 
         language_filter = self._current_language_filter()
         if language_filter:
-            visible = [item for item in self._catalog if item["language"] == language_filter]
+            visible = [
+                item
+                for item in self._catalog
+                if self._normalize_language(item["language"])
+                == self._normalize_language(language_filter)
+            ]
         else:
             visible = list(self._catalog)
         self._visible_catalog = visible
@@ -129,23 +165,28 @@ class TranslationSwitcher(Gtk.Box):
         self._items = [item["label"] for item in visible]
         self.dropdown.set_model(Gtk.StringList.new(self._items))
         if not self._codes:
-            return
+            return None
         if selected_code in self._codes:
             self.dropdown.set_selected(self._codes.index(selected_code))
-            return
+            return selected_code
         if previous_selected_code in self._codes:
             self.dropdown.set_selected(self._codes.index(previous_selected_code))
+            return previous_selected_code
         else:
             self.dropdown.set_selected(0)
+            return self._codes[0]
 
     def _on_language_filter_changed(self, _dropdown: Gtk.DropDown, _pspec) -> None:
         if self._suspend_notify:
             return
+        previous_selected_code = self._current_selected_code()
         self._suspend_notify = True
         try:
-            self._apply_language_filter()
+            new_selected_code = self._apply_language_filter()
         finally:
             self._suspend_notify = False
+        if new_selected_code and new_selected_code != previous_selected_code:
+            self._on_translation_changed(new_selected_code)
 
     def _on_selected_changed(self, dropdown: Gtk.DropDown, _pspec) -> None:
         if self._suspend_notify:

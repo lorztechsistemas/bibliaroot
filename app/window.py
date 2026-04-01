@@ -1480,9 +1480,21 @@ class MainWindow(Adw.ApplicationWindow):
             return
         code = self.ui_language_codes[idx]
         self._backend.set_ui_language(code)
-        self.status_line.set_text(
-            _("Idioma salvo. Reinicie o app para aplicar a tradução da interface.")
-        )
+        auto_switched_translation = None
+        if code != "system":
+            target_translation = self._backend.find_translation_for_language(code)
+            active_language = self._backend.active_translation_language()
+            if target_translation and target_translation != self._backend.db.translation:
+                target_language = str(code or "").strip().replace("_", "-").lower().split("-", 1)[0]
+                if active_language != target_language:
+                    self._on_translation_changed(target_translation)
+                    auto_switched_translation = target_translation
+        message = _("Idioma salvo. Reinicie o app para aplicar a tradução da interface.")
+        if auto_switched_translation:
+            message = _(
+                "Idioma salvo. Reinicie o app para aplicar a interface. A Bíblia ativa foi trocada para %(translation)s."
+            ) % {"translation": auto_switched_translation}
+        self.status_line.set_text(message)
         self._toast(_("Idioma salvo. Reinicie o app."))
 
     def _on_reading_layout_changed(self, dropdown: Gtk.DropDown, _pspec) -> None:

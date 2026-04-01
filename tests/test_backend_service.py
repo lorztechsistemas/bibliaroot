@@ -78,7 +78,7 @@ def test_backend_initialization_search_and_favorites(tmp_path: Path) -> None:
     settings4 = backend.set_tts_engine("piper")
     assert settings4.tts_engine == "piper"
     settings5 = backend.set_tts_engine("auto")
-    assert settings5.tts_engine == "piper"
+    assert settings5.tts_engine == "auto"
 
 
 def test_backend_schedule_window_does_not_truncate_to_24(tmp_path: Path) -> None:
@@ -128,6 +128,47 @@ def test_backend_translation_catalog_includes_language_metadata(tmp_path: Path) 
     assert catalog[0]["code"] == "TST"
     assert catalog[0]["language"] == "en"
     assert "[en]" in catalog[0]["label"]
+
+
+def test_backend_finds_translation_for_language_and_switches_book_locale(tmp_path: Path) -> None:
+    bibles_dir = tmp_path / "data" / "bibles"
+    create_sample_bible_sqlite(
+        bibles_dir / "ARA.sqlite",
+        translation="ARA",
+        language="pt-BR",
+        books=[(1, 1, 1, "Gênesis"), (43, 43, 2, "João")],
+        verses=[
+            (1, 43, 3, 16, "Porque Deus amou ao mundo de tal maneira..."),
+            (2, 1, 1, 1, "No princípio criou Deus os céus e a terra."),
+        ],
+    )
+    create_sample_bible_sqlite(
+        bibles_dir / "KJV.sqlite",
+        translation="KJV",
+        language="en",
+        books=[(1, 1, 1, "Genesis"), (43, 43, 2, "John")],
+        verses=[
+            (1, 43, 3, 16, "For God so loved the world..."),
+            (2, 1, 1, 1, "In the beginning God created the heaven and the earth."),
+        ],
+    )
+    backend = BibleBackend(
+        bibles_dir=bibles_dir,
+        favorites_db=tmp_path / "data" / "user" / "favorites.db",
+        settings_file=tmp_path / "data" / "user" / "settings.json",
+        study_db=tmp_path / "data" / "user" / "study.db",
+    )
+    state = backend.initialize()
+    assert state.translation == "ARA"
+    assert backend.find_translation_for_language("en") == "KJV"
+
+    backend.set_translation("KJV")
+    books = backend.list_books()
+    john = next(book for book in books if int(book["id"]) == 43)
+    assert john["name"] == "John"
+    chapter = backend.open_chapter(book_id=43, chapter=3)
+    assert chapter is not None
+    assert chapter["verses"][0]["text"] == "For God so loved the world..."
 
 
 def test_backend_study_search_filters(tmp_path: Path) -> None:
