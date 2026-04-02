@@ -25,7 +25,7 @@ from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Pango
 
 from .constants import APP_NAME, APP_SLUG, APP_USER_AGENT, DAILY_TIMER_NAME
 from .services.backend import BibleBackend
-from .i18n import _
+from .i18n import _, resolved_language
 from .widgets.book_sidebar import BookSidebar
 from .widgets.chapter_panel import ChapterPanel
 from .widgets.translation_switcher import TranslationSwitcher
@@ -1144,6 +1144,15 @@ class MainWindow(Adw.ApplicationWindow):
 
     def _load_initial_state(self) -> None:
         state = self._backend.initialize()
+        configured_ui_language = str(getattr(state.settings, "ui_language", "system") or "system").strip()
+        if configured_ui_language and configured_ui_language.lower() != "system":
+            target_translation = self._backend.find_translation_for_language(configured_ui_language)
+            if target_translation and target_translation != state.translation:
+                active_language = self._backend.active_translation_language()
+                target_language = str(resolved_language(configured_ui_language) or "").replace("-", "_").lower()
+                if active_language != target_language.split("_", 1)[0]:
+                    state.translation = self._backend.set_translation(target_translation)
+                    state.settings = self._backend.get_settings()
         self._font_scale = float(state.settings.font_scale or 1.0)
         self._theme_mode = str(getattr(state.settings, "theme_mode", "system") or "system")
         self._reading_layout = str(getattr(state.settings, "reading_layout", "cards") or "cards")

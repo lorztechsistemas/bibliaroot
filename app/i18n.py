@@ -21,22 +21,71 @@ def _candidate_locale_dirs() -> list[Path]:
     ]
 
 
+def _normalize_language_code(value: str) -> str:
+    code = str(value or "").strip()
+    if not code:
+        return ""
+    code = code.split(".", 1)[0].split("@", 1)[0].replace("-", "_")
+    return code
+
+
+def system_language_preferences() -> list[str]:
+    languages: list[str] = []
+
+    lang_env = os.getenv("LANGUAGE")
+    if lang_env:
+        languages.extend(part.strip() for part in lang_env.split(":") if part.strip())
+
+    for env_name in ("LC_ALL", "LC_MESSAGES", "LANG"):
+        value = os.getenv(env_name)
+        if value:
+            languages.append(value)
+
+    try:
+        sys_lang, _enc = pylocale.getlocale(pylocale.LC_MESSAGES)
+        if sys_lang:
+            languages.append(sys_lang)
+    except Exception:
+        pass
+
+    try:
+        sys_lang, _enc = pylocale.getlocale()
+        if sys_lang:
+            languages.append(sys_lang)
+    except Exception:
+        pass
+
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for value in languages:
+        code = _normalize_language_code(value)
+        if not code or code.lower() == "c":
+            continue
+        base = code.split("_", 1)[0]
+        for candidate in (code, base):
+            if candidate and candidate not in seen:
+                normalized.append(candidate)
+                seen.add(candidate)
+    return normalized
+
+
+def resolved_language(preferred_language: str | None = None) -> str | None:
+    pref = (preferred_language or "").strip()
+    if pref and pref.lower() != "system":
+        return _normalize_language_code(pref) or None
+    languages = system_language_preferences()
+    return languages[0] if languages else None
+
+
 def setup_i18n(domain: str = DOMAIN, preferred_language: str | None = None) -> gettext.NullTranslations:
     global _TRANSLATOR
 
     pref = (preferred_language or "").strip()
     if pref and pref.lower() != "system":
-        languages = [pref]
+        resolved = _normalize_language_code(pref)
+        languages = [resolved] if resolved else None
     else:
-        lang_env = os.getenv("LANGUAGE")
-        languages = [lang_env] if lang_env else None
-    try:
-        if not languages:
-            sys_lang, _enc = pylocale.getdefaultlocale()
-            if sys_lang:
-                languages = [sys_lang]
-    except Exception:
-        languages = None
+        languages = system_language_preferences() or None
 
     for loc_dir in _candidate_locale_dirs():
         if not loc_dir.exists():
